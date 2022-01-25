@@ -1,8 +1,7 @@
 package consoleuserinterface.userservice;
 
 import consoleuserinterface.actions.*;
-import consoleuserinterface.actions.exportimportactions.ExportRoom;
-import consoleuserinterface.actions.exportimportactions.ImportRoom;
+import consoleuserinterface.actions.exportimportactions.*;
 
 public class Builder {
     private Menu rootMenu;
@@ -204,16 +203,16 @@ public class Builder {
                         new ImportRoom(), expImpFilesMenu));
         expImpFilesMenu.addMenuItem(new MenuItem
                 ("Экспортировать файл с гостем(ями)                (выберите 3)",
-                        new (), expImpFilesMenu));
+                        new ExportGuest(), expImpFilesMenu));
         expImpFilesMenu.addMenuItem(new MenuItem
                 ("Импортировать файл с гостем(ями)                 (выберите 4)",
-                        new DeleteAdditionalService(), expImpFilesMenu));
+                        new ImportGuest(), expImpFilesMenu));
         expImpFilesMenu.addMenuItem(new MenuItem
                 ("Экспортировать файл с дополнительным сервисом(ами)(выберите 5)",
-                        new SetNewPriceRoom(), expImpFilesMenu));
+                        new ExportAdditionalService(), expImpFilesMenu));
         expImpFilesMenu.addMenuItem(new MenuItem
                 ("Импортировать файл с дополнительным сервисом(ами)(выберите 6)",
-                        new SetRoomStatusAsOnRepair(), expImpFilesMenu));
+                        new ImportAdditionalService(), expImpFilesMenu));
 //        expImpFilesMenu.addMenuItem(new MenuItem
 //                ("Установить номеру статус \"Свободен\"     (выберите 7)",
 //                        new SetRoomStatusAsEmpty(), expImpFilesMenu));

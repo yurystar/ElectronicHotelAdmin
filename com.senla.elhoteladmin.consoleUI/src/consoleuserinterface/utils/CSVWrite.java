@@ -88,7 +88,7 @@ public class CSVWrite {
             System.out.println("Выбор завершен.\n");
 
             for (AdditionalService service : servicesForExport) {
-                String serviceStr = service.getServiceID() + "," + service.getServiceName() +
+                String serviceStr = service.getServiceID() + "," + service.getServiceName() + "," +
                         service.getServicePrice() + "\n";
                 writer.write(serviceStr);
             }

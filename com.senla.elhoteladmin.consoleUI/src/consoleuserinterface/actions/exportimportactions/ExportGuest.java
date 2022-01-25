@@ -1,4 +1,11 @@
 package consoleuserinterface.actions.exportimportactions;
 
-public class ExportGuest {
+import consoleuserinterface.actions.IAction;
+import consoleuserinterface.utils.CSVWrite;
+
+public class ExportGuest implements IAction {
+    @Override
+    public void execute() {
+        CSVWrite.CSVWriteGuest();
+    }
 }
