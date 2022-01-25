@@ -1,4 +1,11 @@
 package consoleuserinterface.actions.exportimportactions;
 
-public class ExportAdditionalService {
+import consoleuserinterface.actions.IAction;
+import consoleuserinterface.utils.CSVWrite;
+
+public class ExportAdditionalService implements IAction {
+    @Override
+    public void execute() {
+        CSVWrite.CSVWriteAddServ();
+    }
 }

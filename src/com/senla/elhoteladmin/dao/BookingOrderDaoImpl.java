@@ -39,7 +39,11 @@ public class BookingOrderDaoImpl implements IBookingOrderRepo {
     @Override
     public void update(BookingOrder bookingOrder) {
         if (!bookingOrders.contains(bookingOrder)) {
-            bookingOrders.add(bookingOrder);
+            BookingOrder tmpBookingOrder = get(bookingOrder.getOrderID());
+            if (tmpBookingOrder != null) {
+                bookingOrders.remove(tmpBookingOrder);
+                bookingOrders.add(bookingOrder);
+            }
         } else {
             System.out.println("Such an object already exists!");
         }
