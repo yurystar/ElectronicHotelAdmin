@@ -194,26 +194,26 @@ public class Builder {
         Menu expImpFilesMenu = new Menu("Exp/Imp Files Menu");
 
         expImpFilesMenu.addMenuItem(new MenuItem
-                ("Вернуться в главное меню                (выберите 0)",
+                ("Вернуться в главное меню                         (выберите 0)",
                         () -> System.out.println("Next"), rootMenu));
         expImpFilesMenu.addMenuItem(new MenuItem
-                ("Экспортировать файл с комнатой(ами)     (выберите 1)",
+                ("Экспортировать файл с комнатой(ами)              (выберите 1)",
                         new ExportRoom(), expImpFilesMenu));
         expImpFilesMenu.addMenuItem(new MenuItem
-                ("Импортировать файл с комнатой(ами)      (выберите 2)",
+                ("Импортировать файл с комнатой(ами)               (выберите 2)",
                         new ImportRoom(), expImpFilesMenu));
-//        expImpFilesMenu.addMenuItem(new MenuItem
-//                ("Добавить дополнительный сервис          (выберите 3)",
-//                        new CreateNewAdditionalService(), expImpFilesMenu));
-//        expImpFilesMenu.addMenuItem(new MenuItem
-//                ("Удалить дополнительный сервис           (выберите 4)",
-//                        new DeleteAdditionalService(), expImpFilesMenu));
-//        expImpFilesMenu.addMenuItem(new MenuItem
-//                ("Изменить цену номера                    (выберите 5)",
-//                        new SetNewPriceRoom(), expImpFilesMenu));
-//        expImpFilesMenu.addMenuItem(new MenuItem
-//                ("Установить номеру статус \"На ремонте\"   (выберите 6)",
-//                        new SetRoomStatusAsOnRepair(), expImpFilesMenu));
+        expImpFilesMenu.addMenuItem(new MenuItem
+                ("Экспортировать файл с гостем(ями)                (выберите 3)",
+                        new (), expImpFilesMenu));
+        expImpFilesMenu.addMenuItem(new MenuItem
+                ("Импортировать файл с гостем(ями)                 (выберите 4)",
+                        new DeleteAdditionalService(), expImpFilesMenu));
+        expImpFilesMenu.addMenuItem(new MenuItem
+                ("Экспортировать файл с дополнительным сервисом(ами)(выберите 5)",
+                        new SetNewPriceRoom(), expImpFilesMenu));
+        expImpFilesMenu.addMenuItem(new MenuItem
+                ("Импортировать файл с дополнительным сервисом(ами)(выберите 6)",
+                        new SetRoomStatusAsOnRepair(), expImpFilesMenu));
 //        expImpFilesMenu.addMenuItem(new MenuItem
 //                ("Установить номеру статус \"Свободен\"     (выберите 7)",
 //                        new SetRoomStatusAsEmpty(), expImpFilesMenu));
