@@ -1,6 +1,7 @@
 package com.senla.elhoteladmin.dao;
 
 import com.senla.elhoteladmin.entity.AdditionalService;
+import com.senla.elhoteladmin.entity.Room;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -41,7 +42,11 @@ public class AdditionalServiceDaoImpl implements IAdditionalServiceRepo {
     @Override
     public void update(AdditionalService additionalService) {
         if (!additionalServices.contains(additionalService)) {
-            additionalServices.add(additionalService);
+            AdditionalService tmpAdditionalService = get(additionalService.getServiceID());
+            if (tmpAdditionalService != null) {
+                additionalServices.remove(tmpAdditionalService);
+                additionalServices.add(additionalService);
+            }
         } else {
             System.out.println("Such an object already exists!");
         }

@@ -1,6 +1,7 @@
 package com.senla.elhoteladmin.dao;
 
 import com.senla.elhoteladmin.entity.Guest;
+import com.senla.elhoteladmin.entity.Room;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,11 @@ public class GuestDaoImpl implements IGuestRepo {
     @Override
     public void update(Guest guest) {
         if (!guests.contains(guest)) {
-            guests.add(guest);
+            Guest tmpGuest = get(guest.getGuestID());
+            if (tmpGuest != null) {
+                guests.remove(tmpGuest);
+                guests.add(guest);
+            }
         } else {
             System.out.println("Such an object already exists!");
         }
