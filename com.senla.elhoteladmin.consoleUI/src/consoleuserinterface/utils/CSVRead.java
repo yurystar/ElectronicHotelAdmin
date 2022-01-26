@@ -196,7 +196,7 @@ public class CSVRead {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Error read.");
+            System.out.println("Error read!");
         }
     }
 }
