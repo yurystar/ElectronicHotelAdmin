@@ -9,7 +9,7 @@ import java.io.*;
 
 public class WrapperDeserialize {
 
-    public static void deserialize() throws NullPointerException {
+    public static void deserialize() {
 
         String fileName = ".." + File.separator + "allEntity.ser";
         File file = new File(fileName);

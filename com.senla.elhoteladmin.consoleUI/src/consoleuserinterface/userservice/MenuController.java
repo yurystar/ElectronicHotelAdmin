@@ -14,7 +14,7 @@ public class MenuController {
         this.navigator = new Navigator();
     }
 
-    public void run() throws IOException {
+    public void run() {
         navigator.setCurrentMenu(builder.getRootMenu());
         navigator.printMenu();
         Integer index;
