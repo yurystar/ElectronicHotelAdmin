@@ -1,5 +1,7 @@
 package com.senla.elhoteladmin.dao;
 
+import com.senla.elhoteladmin.configuration.ConfigProperty;
+import com.senla.elhoteladmin.configuration.ConfigUtil;
 import com.senla.elhoteladmin.entity.*;
 
 import java.time.LocalDate;
@@ -14,6 +16,13 @@ public class BookingOrderDaoImpl implements IBookingOrderRepo {
             instance = new BookingOrderDaoImpl();
         }
         return instance;
+    }
+
+    @ConfigProperty
+    private int limitNumGuestsForShow;
+
+    public BookingOrderDaoImpl() {
+        ConfigUtil.initializeProperties(this);
     }
 
     private List<BookingOrder> bookingOrders = new ArrayList<>();
@@ -62,7 +71,7 @@ public class BookingOrderDaoImpl implements IBookingOrderRepo {
                 .filter(bookingOrder -> bookingOrder.getOrderCheckInDate().
                         isBefore(LocalDate.now().plusDays(1)))
                 .sorted((o1, o2) -> o2.getOrderCheckInDate().compareTo(o1.getOrderCheckInDate()))
-                .limit(3)
+                .limit(limitNumGuestsForShow)
                 .collect(Collectors.toList());
     }
 

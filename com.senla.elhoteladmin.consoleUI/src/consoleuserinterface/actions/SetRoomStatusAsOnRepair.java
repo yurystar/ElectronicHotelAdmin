@@ -10,7 +10,6 @@ public class SetRoomStatusAsOnRepair implements IAction{
     public void execute() {
         System.out.println("Введите номер комнаты - ");
         adminControllerSingleton.setRoomStatusAsOnRepair(ScanUtil.getInt());
-        System.out.println("Статус изменен.\n");
         System.out.println();
     }
 }

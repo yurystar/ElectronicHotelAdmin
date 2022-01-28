@@ -17,8 +17,8 @@ public class AdminControllerSingleton {
     private static AdminControllerSingleton instance;
 
     public static synchronized AdminControllerSingleton getInstance() {
-                if (instance == null) {
-                    instance = new AdminControllerSingleton();
+        if (instance == null) {
+            instance = new AdminControllerSingleton();
         }
         return instance;
     }
@@ -92,6 +92,7 @@ public class AdminControllerSingleton {
                         && !rooms.getRoomStatus().equals(RoomStatus.ON_REPAIR)
                         && !rooms.getRoomStatus().equals(RoomStatus.BUSY)) {
                     rooms.setRoomStatus(RoomStatus.ON_REPAIR);
+                    System.out.println("Статус изменен.\n");
                 }
             }
         } else System.out.println("Изменение статуса номера запрещено.");

@@ -30,6 +30,8 @@ public class ConfigUtil {
                         }
                     } catch (IllegalAccessException e) {
                         System.out.println("Ошибка рефлексивного доступа");
+                    } finally {
+                        field.setAccessible(false);
                     }
                 }
             }
