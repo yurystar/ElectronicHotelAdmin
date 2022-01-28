@@ -11,7 +11,7 @@ public class ShowLastThreeGuestsRoom implements IAction {
 
     @Override
     public void execute() {
-        System.out.println("Введите номер комнаты - \n");
+        System.out.println("Введите номер комнаты - ");
         List<BookingOrder> bookingOrders = bookingOrderService.getLastThreeGuestsRoom(ScanUtil.getInt());
         System.out.println("Список 3-х последних постояльцев комнаты - ");
         for (BookingOrder order : bookingOrders) {
