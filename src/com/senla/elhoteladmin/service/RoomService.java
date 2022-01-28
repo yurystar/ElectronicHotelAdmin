@@ -1,5 +1,7 @@
 package com.senla.elhoteladmin.service;
 
+import com.senla.elhoteladmin.configuration.ConfigProperty;
+import com.senla.elhoteladmin.configuration.ConfigUtil;
 import com.senla.elhoteladmin.dao.IRoomRepo;
 import com.senla.elhoteladmin.dao.RoomDaoImpl;
 import com.senla.elhoteladmin.entity.Room;
@@ -17,9 +19,17 @@ public class RoomService implements IRoomService {
     }
 
     private final IRoomRepo roomRepo;
+    @ConfigProperty
+    private Boolean roomStatusChange;
 
     public RoomService() {
         this.roomRepo = RoomDaoImpl.getInstance();
+        ConfigUtil.initializeProperties(this);
+    }
+
+    @Override
+    public Boolean getRoomStatusChange() {
+        return roomStatusChange;
     }
 
     @Override

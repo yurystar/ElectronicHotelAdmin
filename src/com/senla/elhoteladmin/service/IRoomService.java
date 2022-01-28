@@ -33,4 +33,6 @@ public interface IRoomService {
     Room getRoomByNum(Integer roomNumber);
 
     void deserializeListRoom(List<Room> list);
+
+    public Boolean getRoomStatusChange();
 }

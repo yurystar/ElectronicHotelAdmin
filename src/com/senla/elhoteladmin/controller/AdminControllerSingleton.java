@@ -86,13 +86,15 @@ public class AdminControllerSingleton {
     }
 
     public void setRoomStatusAsOnRepair(Integer roomNumber) {
-        for (Room rooms : roomService.getRoomList()) {
-            if (rooms.getRoomNumber().equals(roomNumber)
-                    && !rooms.getRoomStatus().equals(RoomStatus.ON_REPAIR)
-                    && !rooms.getRoomStatus().equals(RoomStatus.BUSY)) {
-                rooms.setRoomStatus(RoomStatus.ON_REPAIR);
+        if (roomService.getRoomStatusChange()) {
+            for (Room rooms : roomService.getRoomList()) {
+                if (rooms.getRoomNumber().equals(roomNumber)
+                        && !rooms.getRoomStatus().equals(RoomStatus.ON_REPAIR)
+                        && !rooms.getRoomStatus().equals(RoomStatus.BUSY)) {
+                    rooms.setRoomStatus(RoomStatus.ON_REPAIR);
+                }
             }
-        }
+        } else System.out.println("Изменение статуса номера запрещено.");
     }
 
     public void setRoomStatusAsEmpty(Integer roomNumber) {
