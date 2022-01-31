@@ -4,6 +4,8 @@ import com.senla.elhoteladmin.dao.AdditionalServiceDaoImpl;
 import com.senla.elhoteladmin.dao.BookingOrderDaoImpl;
 import com.senla.elhoteladmin.dao.GuestDaoImpl;
 import com.senla.elhoteladmin.dao.RoomDaoImpl;
+import com.senla.elhoteladmin.service.AdditionalServiceService;
+import com.senla.elhoteladmin.service.BookingOrderService;
 
 import java.io.*;
 
@@ -17,8 +19,8 @@ public class WrapperDeserialize {
         try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file))) {
 
             Wrapper wrapper = (Wrapper) objectInputStream.readObject();
-            AdditionalServiceDaoImpl.getInstance().deserializeListAddServ(wrapper.getAdditionalServices());
-            BookingOrderDaoImpl.getInstance().deserializeListBookingOrder(wrapper.getBookingOrders());
+            AdditionalServiceService.getInstance().deserializeListAddServ(wrapper.getAdditionalServices());
+            BookingOrderService.getInstance().deserializeListBookingOrder(wrapper.getBookingOrders());
             GuestDaoImpl.getInstance().deserializeListGuest(wrapper.getGuests());
             RoomDaoImpl.getInstance().deserializeListRoom(wrapper.getRooms());
 

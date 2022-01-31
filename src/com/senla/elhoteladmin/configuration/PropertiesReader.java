@@ -1,12 +1,11 @@
 package com.senla.elhoteladmin.configuration;
 
-import com.senla.elhoteladmin.exception.PropertiesNotFoundException;
+import com.senla.elhoteladmin.configuration.exception.PropertiesNotFoundException;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.Properties;
 
 public class PropertiesReader {

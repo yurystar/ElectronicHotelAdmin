@@ -5,6 +5,8 @@ import com.senla.elhoteladmin.dao.BookingOrderDaoImpl;
 import com.senla.elhoteladmin.dao.GuestDaoImpl;
 import com.senla.elhoteladmin.dao.RoomDaoImpl;
 import com.senla.elhoteladmin.entity.*;
+import com.senla.elhoteladmin.service.AdditionalServiceService;
+import com.senla.elhoteladmin.service.BookingOrderService;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -88,7 +90,7 @@ public class CSVRead {
     }
 
     public static void CSVReadAddServ() {
-        AdditionalServiceDaoImpl serviceDao = AdditionalServiceDaoImpl.getInstance();
+        AdditionalServiceService serviceDao = AdditionalServiceService.getInstance();
         try (BufferedReader reader = new BufferedReader(new FileReader("..\\AdditionalService.csv"))) {
 
             String[] lineArray;
@@ -108,11 +110,11 @@ public class CSVRead {
             System.out.println();
 
             for (AdditionalService addServFromImport : addServsFromFile) {
-                AdditionalService addServFromStorage = serviceDao.get(addServFromImport.getServiceID());
+                AdditionalService addServFromStorage = serviceDao.getAdditionalServiceByID(addServFromImport.getServiceID());
                 if (addServFromStorage == null) {
-                    serviceDao.save(addServFromImport);
+                    serviceDao.setNewAdditionalService(addServFromImport);
                 } else if (!addServFromImport.equals(addServFromStorage)) {
-                    serviceDao.update(addServFromImport);
+                    serviceDao.updateAdditionalService(addServFromImport);
                 }
             }
         } catch (Exception e) {
@@ -123,7 +125,7 @@ public class CSVRead {
 
     public static void CSVReadBookOrder() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        BookingOrderDaoImpl bookingOrderDao = BookingOrderDaoImpl.getInstance();
+        BookingOrderService bookingOrderDao = BookingOrderService.getInstance();
 
         try (BufferedReader reader = new BufferedReader(new FileReader("..\\BookingOrder.csv"))) {
 
@@ -187,11 +189,12 @@ public class CSVRead {
             System.out.println();
 
             for (BookingOrder bookOrdFromImport : BookOrdersFromFile) {
-                BookingOrder bookOrdFromStorage = bookingOrderDao.get(bookOrdFromImport.getOrderID());
+                BookingOrder bookOrdFromStorage =
+                        bookingOrderDao.getBookingOrderByID(bookOrdFromImport.getOrderID());
                 if (bookOrdFromStorage == null) {
-                    bookingOrderDao.save(bookOrdFromImport);
+                    bookingOrderDao.saveNewBookingOrder(bookOrdFromImport);
                 } else if (!bookOrdFromImport.equals(bookOrdFromStorage)) {
-                    bookingOrderDao.update(bookOrdFromImport);
+                    bookingOrderDao.updateBookingOrder(bookOrdFromImport);
                 }
             }
         } catch (Exception e) {

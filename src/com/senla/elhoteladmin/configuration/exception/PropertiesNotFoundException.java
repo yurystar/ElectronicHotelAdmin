@@ -1,4 +1,4 @@
-package com.senla.elhoteladmin.exception;
+package com.senla.elhoteladmin.configuration.exception;
 
 public class PropertiesNotFoundException extends RuntimeException {
 }

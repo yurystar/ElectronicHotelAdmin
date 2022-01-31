@@ -19,6 +19,7 @@ public class RoomService implements IRoomService {
     }
 
     private final IRoomRepo roomRepo;
+
     @ConfigProperty
     private Boolean roomStatusChange;
 
