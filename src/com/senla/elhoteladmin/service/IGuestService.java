@@ -10,9 +10,13 @@ public interface IGuestService {
 
     long getNumberGuestsHotel();
 
-    void addGuestInStorage(Guest guest);
+    void saveGuestInStorage(Guest guest);
 
     void removeGuestFromStorage(Guest guest);
+
+    Guest getGuestById(Integer guestID);
+
+    void updateGuest(Guest guest);
 
     void deserializeListGuest(List<Guest> list);
 }

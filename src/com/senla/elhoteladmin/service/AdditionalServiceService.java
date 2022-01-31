@@ -1,12 +1,15 @@
 package com.senla.elhoteladmin.service;
 
-import com.senla.elhoteladmin.dao.AdditionalServiceDaoImpl;
 import com.senla.elhoteladmin.dao.IAdditionalServiceRepo;
 import com.senla.elhoteladmin.entity.AdditionalService;
+import depinject.DepInjReflectUtil;
+import depinject.DependencyInjection;
 
 import java.util.List;
 
 public class AdditionalServiceService implements IAdditionalServiceService {
+
+    @DependencyInjection
     private IAdditionalServiceRepo additionalServiceRepo;
 
     private static AdditionalServiceService instance;
@@ -18,8 +21,8 @@ public class AdditionalServiceService implements IAdditionalServiceService {
         return instance;
     }
 
-    public AdditionalServiceService() {
-        this.additionalServiceRepo = AdditionalServiceDaoImpl.getInstance();
+    private AdditionalServiceService() {
+        DepInjReflectUtil.initializeDepInjection(this);
     }
 
     @Override
@@ -33,7 +36,7 @@ public class AdditionalServiceService implements IAdditionalServiceService {
     }
 
     @Override
-    public void setNewAdditionalService(AdditionalService additionalService) {
+    public void saveNewAdditionalService(AdditionalService additionalService) {
         additionalServiceRepo.save(additionalService);
     }
 
@@ -45,6 +48,11 @@ public class AdditionalServiceService implements IAdditionalServiceService {
     @Override
     public AdditionalService getAdditionalServiceByID(Integer serviceID) {
         return additionalServiceRepo.get(serviceID);
+    }
+
+    @Override
+    public void updateAdditionalService(AdditionalService additionalService) {
+        additionalServiceRepo.update(additionalService);
     }
 
     @Override

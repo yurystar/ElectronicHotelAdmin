@@ -9,23 +9,15 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class BookingOrderDaoImpl implements IBookingOrderRepo {
-    private static BookingOrderDaoImpl instance;
 
-    public static synchronized BookingOrderDaoImpl getInstance() {
-        if (instance == null) {
-            instance = new BookingOrderDaoImpl();
-        }
-        return instance;
-    }
+    private List<BookingOrder> bookingOrders = new ArrayList<>();
 
     @ConfigProperty
     private int limitNumGuestsForShow;
 
-    public BookingOrderDaoImpl() {
+    private BookingOrderDaoImpl() {
         ConfigUtil.initializeProperties(this);
     }
-
-    private List<BookingOrder> bookingOrders = new ArrayList<>();
 
     @Override
     public BookingOrder get(Integer bookingOrderID) throws ArrayIndexOutOfBoundsException {
@@ -109,6 +101,6 @@ public class BookingOrderDaoImpl implements IBookingOrderRepo {
 
     @Override
     public void deserializeListBookingOrder(List<BookingOrder> list) {
-        BookingOrderDaoImpl.getInstance().bookingOrders = new ArrayList<>(list);
+       bookingOrders = new ArrayList<>(list);
     }
 }

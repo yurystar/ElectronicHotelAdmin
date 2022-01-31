@@ -1,13 +1,14 @@
 package consoleuserinterface.utils;
 
-import com.senla.elhoteladmin.dao.AdditionalServiceDaoImpl;
-import com.senla.elhoteladmin.dao.BookingOrderDaoImpl;
-import com.senla.elhoteladmin.dao.GuestDaoImpl;
 import com.senla.elhoteladmin.dao.RoomDaoImpl;
 import com.senla.elhoteladmin.entity.AdditionalService;
 import com.senla.elhoteladmin.entity.BookingOrder;
 import com.senla.elhoteladmin.entity.Guest;
 import com.senla.elhoteladmin.entity.Room;
+import com.senla.elhoteladmin.service.AdditionalServiceService;
+import com.senla.elhoteladmin.service.BookingOrderService;
+import com.senla.elhoteladmin.service.GuestService;
+import com.senla.elhoteladmin.service.RoomService;
 
 import java.io.*;
 import java.time.format.DateTimeFormatter;
@@ -18,7 +19,7 @@ public class CSVWrite {
 
     public static void CSVWriteRoom() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("..\\Room.csv"))) {
-            RoomDaoImpl roomDao = RoomDaoImpl.getInstance();
+            RoomService roomDao = RoomService.getInstance();
             List<Room> roomsForExport = new ArrayList<>();
 
             int index = -1;
@@ -46,15 +47,15 @@ public class CSVWrite {
 
     public static void CSVWriteGuest() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("..\\Guest.csv"))) {
-            GuestDaoImpl guestDao = GuestDaoImpl.getInstance();
+            GuestService guestDao = GuestService.getInstance();
             List<Guest> guestsForExport = new ArrayList<>();
 
             int index = -1;
             while (index != 0) {
                 System.out.println("Введите ID номер гостя для экспорта. Или введите 0 для завершения выбора.");
                 index = ScanUtil.getInt();
-                if (guestDao.get(index) != null && index != 0) {
-                    guestsForExport.add(guestDao.get(index));
+                if (guestDao.getGuestById(index) != null && index != 0) {
+                    guestsForExport.add(guestDao.getGuestById(index));
                 } else System.out.println("Нет такого гостя или выбор завершен.\n");
             }
 
@@ -74,7 +75,7 @@ public class CSVWrite {
 
     public static void CSVWriteAddServ() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("..\\AdditionalService.csv"))) {
-            AdditionalServiceDaoImpl serviceDao = AdditionalServiceDaoImpl.getInstance();
+            AdditionalServiceService serviceDao = AdditionalServiceService.getInstance();
             List<AdditionalService> servicesForExport = new ArrayList<>();
 
             int index = -1;
@@ -82,8 +83,8 @@ public class CSVWrite {
                 System.out.println("Введите ID номер дополнительного сервиса для экспорта. " +
                         "Или введите 0 для завершения выбора.");
                 index = ScanUtil.getInt();
-                if (serviceDao.get(index) != null && index != 0) {
-                    servicesForExport.add(serviceDao.get(index));
+                if (serviceDao.getAdditionalServiceByID(index) != null && index != 0) {
+                    servicesForExport.add(serviceDao.getAdditionalServiceByID(index));
                 } else System.out.println("Нет такого дополнительного сервиса или выбор завершен.\n");
             }
 
@@ -105,15 +106,15 @@ public class CSVWrite {
         String roomStr;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("..\\BookingOrder.csv"))) {
-            BookingOrderDaoImpl bookingOrderDao = BookingOrderDaoImpl.getInstance();
+            BookingOrderService bookingOrderDao = BookingOrderService.getInstance();
             List<BookingOrder> orders = new ArrayList<>();
 
             int index = -1;
             while (index != 0) {
                 System.out.println("Введите номер заказа для экспорта. Или введите 0 для завершения выбора.");
                 index = ScanUtil.getInt();
-                if (bookingOrderDao.get(index) != null && index != 0) {
-                    orders.add(bookingOrderDao.get(index));
+                if (bookingOrderDao.getBookingOrderByID(index) != null && index != 0) {
+                    orders.add(bookingOrderDao.getBookingOrderByID(index));
                 } else System.out.println("Нет такого заказа или выбор завершен.\n");
             }
 

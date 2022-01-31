@@ -9,16 +9,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RoomDaoImpl implements IRoomRepo {
-    private static RoomDaoImpl instance;
-
-    public static synchronized RoomDaoImpl getInstance() {
-        if (instance == null) {
-            instance = new RoomDaoImpl();
-        }
-        return instance;
-    }
 
     private List<Room> rooms = new ArrayList<>();
+
+    private RoomDaoImpl() {
+    }
 
     @Override
     public Room get(Integer roomID) {
@@ -127,6 +122,6 @@ public class RoomDaoImpl implements IRoomRepo {
 
     @Override
     public void deserializeListRoom(List<Room> list) {
-        RoomDaoImpl.getInstance().rooms = new ArrayList<>(list);
+        rooms = new ArrayList<>(list);
     }
 }

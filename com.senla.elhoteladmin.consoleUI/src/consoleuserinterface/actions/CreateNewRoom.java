@@ -59,7 +59,7 @@ public class CreateNewRoom implements IAction {
         room.setRoomStatus(RoomStatus.EMPTY);
         System.out.println();
 
-        roomService.setNewRoom(room);
+        roomService.saveNewRoom(room);
         System.out.println("Комната - \n" + room + " \nсоздана.\n");
     }
 }

@@ -20,5 +20,9 @@ public interface IBookingOrderService {
 
     void deleteBookingOrderByID(Integer orderID);
 
+    BookingOrder getBookingOrderByID(Integer bookingOrderID);
+
+    void updateBookingOrder(BookingOrder bookingOrder);
+
     void deserializeListBookingOrder(List<BookingOrder> list);
 }

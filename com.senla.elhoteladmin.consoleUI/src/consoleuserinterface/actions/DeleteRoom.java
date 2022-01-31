@@ -10,7 +10,7 @@ public class DeleteRoom implements IAction {
     @Override
     public void execute() {
         System.out.println("Введите номер комнаты для удаления - ");
-        Room room = roomService.getRoomByNumber(ScanUtil.getInt());
+        Room room = roomService.getRoomByNum(ScanUtil.getInt());
         if (room != null) {
             roomService.deleteRoom(room);
         }

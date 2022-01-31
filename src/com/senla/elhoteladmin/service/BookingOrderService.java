@@ -1,13 +1,17 @@
 package com.senla.elhoteladmin.service;
 
-import com.senla.elhoteladmin.dao.BookingOrderDaoImpl;
 import com.senla.elhoteladmin.dao.IBookingOrderRepo;
 import com.senla.elhoteladmin.entity.AdditionalService;
 import com.senla.elhoteladmin.entity.BookingOrder;
+import depinject.DepInjReflectUtil;
+import depinject.DependencyInjection;
 
 import java.util.List;
 
 public class BookingOrderService implements IBookingOrderService {
+    @DependencyInjection
+    private IBookingOrderRepo bookingOrderRepo;
+
     private static BookingOrderService instance;
 
     public static synchronized BookingOrderService getInstance() {
@@ -17,10 +21,8 @@ public class BookingOrderService implements IBookingOrderService {
         return instance;
     }
 
-    private IBookingOrderRepo bookingOrderRepo;
-
-    public BookingOrderService() {
-        this.bookingOrderRepo = BookingOrderDaoImpl.getInstance();
+    private BookingOrderService() {
+        DepInjReflectUtil.initializeDepInjection(this);
     }
 
     @Override
@@ -59,6 +61,16 @@ public class BookingOrderService implements IBookingOrderService {
         if (order != null) {
             bookingOrderRepo.delete(order);
         }
+    }
+
+    @Override
+    public BookingOrder getBookingOrderByID(Integer bookingOrderID) {
+        return bookingOrderRepo.get(bookingOrderID);
+    }
+
+    @Override
+    public void updateBookingOrder(BookingOrder bookingOrder) {
+        bookingOrderRepo.update(bookingOrder);
     }
 
     @Override

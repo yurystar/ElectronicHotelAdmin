@@ -9,11 +9,13 @@ public interface IAdditionalServiceService {
 
     List<AdditionalService> getListAdditionalServicesSortedByPrice();
 
-    void setNewAdditionalService(AdditionalService additionalService);
+    void saveNewAdditionalService(AdditionalService additionalService);
 
     void deleteAdditionalService(AdditionalService additionalService);
 
     AdditionalService getAdditionalServiceByID(Integer serviceID);
 
     public void deserializeListAddServ(List<AdditionalService> list);
+
+    void updateAdditionalService(AdditionalService additionalService);
 }
