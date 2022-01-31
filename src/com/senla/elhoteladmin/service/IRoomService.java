@@ -20,17 +20,17 @@ public interface IRoomService {
 
     long getNumberEmptyHotelRooms();
 
-    void setNewRoom(Room room);
+    void saveNewRoom(Room room);
 
     void deleteRoom(Room room);
 
-    Room getRoomByNumber(Integer roomNumber);
-
-    List<Room> getRoomList();
+    List<Room> getRoomsList();
 
     void setNewPriceRoom(Integer roomNumber, Integer priceRoom);
 
     Room getRoomByNum(Integer roomNumber);
+
+    void updateRoom(Room room);
 
     void deserializeListRoom(List<Room> list);
 

@@ -21,7 +21,7 @@ public class BookingOrderService implements IBookingOrderService {
         return instance;
     }
 
-    public BookingOrderService() {
+    private BookingOrderService() {
         DepInjReflectUtil.initializeDepInjection(this);
     }
 

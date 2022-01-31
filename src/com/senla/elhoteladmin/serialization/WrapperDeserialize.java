@@ -6,6 +6,8 @@ import com.senla.elhoteladmin.dao.GuestDaoImpl;
 import com.senla.elhoteladmin.dao.RoomDaoImpl;
 import com.senla.elhoteladmin.service.AdditionalServiceService;
 import com.senla.elhoteladmin.service.BookingOrderService;
+import com.senla.elhoteladmin.service.GuestService;
+import com.senla.elhoteladmin.service.RoomService;
 
 import java.io.*;
 
@@ -21,8 +23,8 @@ public class WrapperDeserialize {
             Wrapper wrapper = (Wrapper) objectInputStream.readObject();
             AdditionalServiceService.getInstance().deserializeListAddServ(wrapper.getAdditionalServices());
             BookingOrderService.getInstance().deserializeListBookingOrder(wrapper.getBookingOrders());
-            GuestDaoImpl.getInstance().deserializeListGuest(wrapper.getGuests());
-            RoomDaoImpl.getInstance().deserializeListRoom(wrapper.getRooms());
+            GuestService.getInstance().deserializeListGuest(wrapper.getGuests());
+            RoomService.getInstance().deserializeListRoom(wrapper.getRooms());
 
             System.out.println("Данные восстановлены.");
 

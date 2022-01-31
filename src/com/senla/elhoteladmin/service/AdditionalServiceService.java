@@ -36,7 +36,7 @@ public class AdditionalServiceService implements IAdditionalServiceService {
     }
 
     @Override
-    public void setNewAdditionalService(AdditionalService additionalService) {
+    public void saveNewAdditionalService(AdditionalService additionalService) {
         additionalServiceRepo.save(additionalService);
     }
 

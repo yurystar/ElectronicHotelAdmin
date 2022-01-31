@@ -31,7 +31,7 @@ public class AdminControllerSingleton {
     }
 
     public Room getRoomByNumber(Integer roomNumber) {
-        return roomService.getRoomByNumber(roomNumber);
+        return roomService.getRoomByNum(roomNumber);
     }
 
     public AdditionalService getAdditionalServiceByID(Integer serviceID) {
@@ -50,7 +50,7 @@ public class AdminControllerSingleton {
                 roomsBusy.add(bookingOrder.getOrderedHotelRoom());
             }
         }
-        List<Room> EmptyHotelRoomsListOnDate = new ArrayList<>(roomService.getRoomList());
+        List<Room> EmptyHotelRoomsListOnDate = new ArrayList<>(roomService.getRoomsList());
         EmptyHotelRoomsListOnDate.removeAll(roomsBusy);
         return EmptyHotelRoomsListOnDate;
     }
@@ -60,9 +60,9 @@ public class AdminControllerSingleton {
             if (order.getOrderID().equals(orderID)) {
                 order.setOrderStatus(OrderStatus.CHECK_IN);
                 for (Guest guest : order.getOrderHotelGuests()) {
-                    guestService.addGuestInStorage(guest);
+                    guestService.saveGuestInStorage(guest);
                 }
-                for (Room room : roomService.getRoomList()) {
+                for (Room room : roomService.getRoomsList()) {
                     if (room.getRoomNumber().equals(order.getOrderedHotelRoom().getRoomNumber())) {
                         room.setRoomStatus(RoomStatus.BUSY);
                     }
@@ -75,7 +75,7 @@ public class AdminControllerSingleton {
         for (BookingOrder order : bookingOrderService.getListBookingOrders()) {
             if (order.getOrderID().equals(orderID)) {
                 order.setOrderStatus(OrderStatus.CHECK_OUT);
-                for (Room room : roomService.getRoomList()) {
+                for (Room room : roomService.getRoomsList()) {
                     if (room.getRoomNumber().equals(order.getOrderedHotelRoom().getRoomNumber())) {
                         room.setRoomStatus(RoomStatus.EMPTY);
                     }
@@ -87,7 +87,7 @@ public class AdminControllerSingleton {
 
     public void setRoomStatusAsOnRepair(Integer roomNumber) {
         if (roomService.getRoomStatusChange()) {
-            for (Room rooms : roomService.getRoomList()) {
+            for (Room rooms : roomService.getRoomsList()) {
                 if (rooms.getRoomNumber().equals(roomNumber)
                         && !rooms.getRoomStatus().equals(RoomStatus.ON_REPAIR)
                         && !rooms.getRoomStatus().equals(RoomStatus.BUSY)) {
@@ -99,7 +99,7 @@ public class AdminControllerSingleton {
     }
 
     public void setRoomStatusAsEmpty(Integer roomNumber) {
-        for (Room rooms : roomService.getRoomList()) {
+        for (Room rooms : roomService.getRoomsList()) {
             if (rooms.getRoomNumber().equals(roomNumber)
                     && rooms.getRoomStatus().equals(RoomStatus.ON_REPAIR)
                     && !rooms.getRoomStatus().equals(RoomStatus.BUSY)) {

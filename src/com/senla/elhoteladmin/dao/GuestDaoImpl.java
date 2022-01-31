@@ -1,22 +1,16 @@
 package com.senla.elhoteladmin.dao;
 
 import com.senla.elhoteladmin.entity.Guest;
-import com.senla.elhoteladmin.entity.Room;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GuestDaoImpl implements IGuestRepo {
-    private static GuestDaoImpl instance;
-
-    public static synchronized GuestDaoImpl getInstance() {
-        if (instance == null) {
-            instance = new GuestDaoImpl();
-        }
-        return instance;
-    }
 
     private List<Guest> guests = new ArrayList<>();
+
+    private GuestDaoImpl() {
+    }
 
     @Override
     public Guest get(Integer guestID) throws ArrayIndexOutOfBoundsException {
@@ -61,6 +55,6 @@ public class GuestDaoImpl implements IGuestRepo {
 
     @Override
     public void deserializeListGuest(List<Guest> list) {
-        GuestDaoImpl.getInstance().guests = new ArrayList<>(list);
+        guests = new ArrayList<>(list);
     }
 }

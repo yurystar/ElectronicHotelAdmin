@@ -24,7 +24,7 @@ public class CreateNewAdditionalService implements IAction {
         System.out.println("Введите цену сервиса - ");
         additionalService.setServicePrice(ScanUtil.getInt());
 
-        service.setNewAdditionalService(additionalService);
+        service.saveNewAdditionalService(additionalService);
         System.out.println("Дополнительный сервис - \n" + additionalService + " \nсоздан.\n");
     }
 }

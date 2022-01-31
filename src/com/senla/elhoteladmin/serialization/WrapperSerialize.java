@@ -1,11 +1,9 @@
 package com.senla.elhoteladmin.serialization;
 
-import com.senla.elhoteladmin.dao.AdditionalServiceDaoImpl;
-import com.senla.elhoteladmin.dao.BookingOrderDaoImpl;
-import com.senla.elhoteladmin.dao.GuestDaoImpl;
-import com.senla.elhoteladmin.dao.RoomDaoImpl;
 import com.senla.elhoteladmin.service.AdditionalServiceService;
 import com.senla.elhoteladmin.service.BookingOrderService;
+import com.senla.elhoteladmin.service.GuestService;
+import com.senla.elhoteladmin.service.RoomService;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -19,8 +17,8 @@ public class WrapperSerialize {
         Wrapper wrapper = new Wrapper(
                 AdditionalServiceService.getInstance().getListAdditionalServices(),
                 BookingOrderService.getInstance().getListBookingOrders(),
-                GuestDaoImpl.getInstance().getAll(),
-                RoomDaoImpl.getInstance().getAll()
+                GuestService.getInstance().getGuestsHotel(),
+                RoomService.getInstance().getRoomsList()
         );
 
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream

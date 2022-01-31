@@ -1,13 +1,16 @@
 package com.senla.elhoteladmin.service;
 
-import com.senla.elhoteladmin.controller.AdminControllerSingleton;
-import com.senla.elhoteladmin.dao.GuestDaoImpl;
 import com.senla.elhoteladmin.dao.IGuestRepo;
 import com.senla.elhoteladmin.entity.Guest;
+import depinject.DepInjReflectUtil;
+import depinject.DependencyInjection;
 
 import java.util.List;
 
 public class GuestService implements IGuestService {
+    @DependencyInjection
+    private IGuestRepo guestRepo;
+
     private static GuestService instance;
 
     public static synchronized GuestService getInstance() {
@@ -17,14 +20,12 @@ public class GuestService implements IGuestService {
         return instance;
     }
 
-    private IGuestRepo guestRepo;
-
-    public GuestService() {
-        this.guestRepo = GuestDaoImpl.getInstance();
+    private GuestService() {
+        DepInjReflectUtil.initializeDepInjection(this);
     }
 
     @Override
-    public void addGuestInStorage(Guest guest) {
+    public void saveGuestInStorage(Guest guest) {
         guestRepo.save(guest);
     }
 
@@ -41,6 +42,16 @@ public class GuestService implements IGuestService {
     @Override
     public long getNumberGuestsHotel() {
         return guestRepo.getNumberOfGuests();
+    }
+
+    @Override
+    public Guest getGuestById(Integer guestID) {
+        return guestRepo.get(guestID);
+    }
+
+    @Override
+    public void updateGuest(Guest guest) {
+        guestRepo.update(guest);
     }
 
     @Override

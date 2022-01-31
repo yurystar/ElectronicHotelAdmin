@@ -9,7 +9,7 @@ public interface IAdditionalServiceService {
 
     List<AdditionalService> getListAdditionalServicesSortedByPrice();
 
-    void setNewAdditionalService(AdditionalService additionalService);
+    void saveNewAdditionalService(AdditionalService additionalService);
 
     void deleteAdditionalService(AdditionalService additionalService);
 
