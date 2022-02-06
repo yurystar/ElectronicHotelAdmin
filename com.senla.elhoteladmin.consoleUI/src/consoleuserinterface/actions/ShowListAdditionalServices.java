@@ -1,15 +1,14 @@
 package consoleuserinterface.actions;
 
-import com.senla.elhoteladmin.service.AdditionalServiceService;
+import com.senla.daoservice.controller.ActionController;
 
 public class ShowListAdditionalServices implements IAction{
-    private final AdditionalServiceService additionalServiceService =
-            AdditionalServiceService.getInstance();
+    ActionController adminController = new ActionController();
 
     @Override
     public void execute() {
         System.out.println("Список всех дополнительных сервисов отеля - " +
-                additionalServiceService.getListAdditionalServices());
+                adminController.getAdminController().getListAdditionalServices());
         System.out.println();
     }
 }

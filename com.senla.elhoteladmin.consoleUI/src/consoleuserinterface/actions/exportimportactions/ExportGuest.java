@@ -4,8 +4,10 @@ import consoleuserinterface.actions.IAction;
 import consoleuserinterface.utils.CSVWrite;
 
 public class ExportGuest implements IAction {
+    CSVWrite csvWrite = new CSVWrite();
+
     @Override
     public void execute() {
-        CSVWrite.CSVWriteGuest();
+        csvWrite.CSVWriteGuest();
     }
 }

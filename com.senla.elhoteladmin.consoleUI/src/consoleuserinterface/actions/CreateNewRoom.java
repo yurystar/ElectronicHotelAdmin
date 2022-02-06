@@ -1,13 +1,13 @@
 package consoleuserinterface.actions;
 
-import com.senla.elhoteladmin.entity.Room;
-import com.senla.elhoteladmin.entity.RoomStatus;
-import com.senla.elhoteladmin.entity.RoomType;
-import com.senla.elhoteladmin.service.RoomService;
+import com.senla.daoservice.controller.ActionController;
+import com.senla.daoservice.entity.Room;
+import com.senla.daoservice.entity.RoomStatus;
+import com.senla.daoservice.entity.RoomType;
 import consoleuserinterface.utils.ScanUtil;
 
 public class CreateNewRoom implements IAction {
-    private final RoomService roomService = RoomService.getInstance();
+    ActionController adminController = new ActionController();
 
     public RoomType selectRoomType() {
         System.out.println("Выберите из списка тип комнаты - \n" +
@@ -43,7 +43,7 @@ public class CreateNewRoom implements IAction {
 
         System.out.println("Введите номер комнаты - ");
         Integer roomNum = ScanUtil.getInt();
-        if (roomService.getRoomByNum(roomNum) != null) {
+        if (adminController.getAdminController().getRoomByNum(roomNum) != null) {
             System.out.println("Комната с таким номером уже существует.\n");
             return;
         } else room.setRoomNumber(roomNum);
@@ -59,7 +59,7 @@ public class CreateNewRoom implements IAction {
         room.setRoomStatus(RoomStatus.EMPTY);
         System.out.println();
 
-        roomService.saveNewRoom(room);
+        adminController.getAdminController().saveNewRoom(room);
         System.out.println("Комната - \n" + room + " \nсоздана.\n");
     }
 }

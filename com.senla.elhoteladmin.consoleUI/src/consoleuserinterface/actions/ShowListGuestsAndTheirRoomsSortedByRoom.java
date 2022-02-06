@@ -1,13 +1,13 @@
 package consoleuserinterface.actions;
 
-import com.senla.elhoteladmin.controller.AdminControllerSingleton;
+import com.senla.daoservice.controller.ActionController;
 
 public class ShowListGuestsAndTheirRoomsSortedByRoom implements IAction{
-    private final AdminControllerSingleton adminControllerSingleton = AdminControllerSingleton.getInstance();
+    ActionController adminController = new ActionController();
 
     @Override
     public void execute() {
         System.out.println("Список гостей и их номеров" +
-                adminControllerSingleton.getListGuestsAndTheirRoomsSortedByRoom());
+                adminController.getAdminController().getListGuestsAndTheirRoomsSortedByRoom());
     }
 }

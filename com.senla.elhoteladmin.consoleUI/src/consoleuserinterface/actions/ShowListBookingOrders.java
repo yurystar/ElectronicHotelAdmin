@@ -1,15 +1,15 @@
 package consoleuserinterface.actions;
 
-import com.senla.elhoteladmin.entity.BookingOrder;
-import com.senla.elhoteladmin.service.BookingOrderService;
+import com.senla.daoservice.controller.ActionController;
+import com.senla.daoservice.entity.BookingOrder;
 
 public class ShowListBookingOrders implements IAction {
-    private final BookingOrderService bookingOrderService = BookingOrderService.getInstance();
+    ActionController adminController = new ActionController();
 
     @Override
     public void execute() {
         System.out.println("Список всех заказов - ");
-        for (BookingOrder order : bookingOrderService.getListBookingOrders()) {
+        for (BookingOrder order : adminController.getAdminController().getListBookingOrders()) {
             System.out.println("---------------------------------------------------------------------------------");
             System.out.println(order);
             System.out.println("---------------------------------------------------------------------------------");

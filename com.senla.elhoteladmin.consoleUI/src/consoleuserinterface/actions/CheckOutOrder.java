@@ -1,15 +1,15 @@
 package consoleuserinterface.actions;
 
-import com.senla.elhoteladmin.controller.AdminControllerSingleton;
+import com.senla.daoservice.controller.ActionController;
 import consoleuserinterface.utils.ScanUtil;
 
 public class CheckOutOrder implements IAction {
-    private final AdminControllerSingleton adminControllerSingleton = AdminControllerSingleton.getInstance();
+    ActionController adminController = new ActionController();
 
     @Override
     public void execute() {
         System.out.println("Введите номер заказа - ");
-        adminControllerSingleton.checkOutOrder(ScanUtil.getInt());
+        adminController.getAdminController().checkOutOrder(ScanUtil.getInt());
         System.out.println("Выселение гостей оформлено.\n");
     }
 }

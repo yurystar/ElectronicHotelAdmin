@@ -1,13 +1,14 @@
 package consoleuserinterface.actions;
 
-import com.senla.elhoteladmin.service.GuestService;
+import com.senla.daoservice.controller.ActionController;
 
 public class ShowGuestsHotel implements IAction {
-    private final GuestService guestService = GuestService.getInstance();
+    ActionController adminController = new ActionController();
 
     @Override
     public void execute() {
-        System.out.println("Список всех гостей - \n" + guestService.getGuestsHotel());
+        System.out.println("Список всех гостей - \n" +
+                adminController.getAdminController().getGuestsHotel());
         System.out.println();
     }
 }

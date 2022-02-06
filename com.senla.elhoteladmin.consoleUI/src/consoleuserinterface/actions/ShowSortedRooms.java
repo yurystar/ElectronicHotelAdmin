@@ -1,10 +1,10 @@
 package consoleuserinterface.actions;
 
-import com.senla.elhoteladmin.service.RoomService;
+import com.senla.daoservice.controller.ActionController;
 import consoleuserinterface.utils.ScanUtil;
 
 public class ShowSortedRooms implements IAction {
-    private final RoomService roomService = RoomService.getInstance();
+    ActionController adminController = new ActionController();
 
     public void showAllSortedRooms() {
         int number = -1;
@@ -19,13 +19,13 @@ public class ShowSortedRooms implements IAction {
             number = ScanUtil.getInt();
 
             if (number == 1) {
-                System.out.println(roomService.getHotelRoomsSortedByRoomPrice());
+                System.out.println(adminController.getAdminController().getHotelRoomsSortedByRoomPrice());
                 System.out.println();
             } else if (number == 2) {
-                System.out.println(roomService.getHotelRoomsSortedByRoomPlaces());
+                System.out.println(adminController.getAdminController().getHotelRoomsSortedByRoomPlaces());
                 System.out.println();
             } else if (number == 3) {
-                System.out.println(roomService.getHotelRoomsSortedByRoomType());
+                System.out.println(adminController.getAdminController().getHotelRoomsSortedByRoomType());
                 System.out.println();
             } else if (number == 0) {
                 System.out.println("Просмотр комнат завершен.\n");
@@ -48,13 +48,13 @@ public class ShowSortedRooms implements IAction {
             number = ScanUtil.getInt();
 
             if (number == 1) {
-                System.out.println(roomService.getEmptyHotelRoomsSortedByRoomPrice());
+                System.out.println(adminController.getAdminController().getEmptyHotelRoomsSortedByRoomPrice());
                 System.out.println();
             } else if (number == 2) {
-                System.out.println(roomService.getEmptyHotelRoomsSortedByRoomPlaces());
+                System.out.println(adminController.getAdminController().getEmptyHotelRoomsSortedByRoomPlaces());
                 System.out.println();
             } else if (number == 3) {
-                System.out.println(roomService.getEmptyHotelRoomsSortedByRoomType());
+                System.out.println(adminController.getAdminController().getEmptyHotelRoomsSortedByRoomType());
                 System.out.println();
             } else if (number == 0) {
                 System.out.println("Просмотр свободных комнат завершен.\n");

@@ -1,15 +1,15 @@
 package consoleuserinterface.actions;
 
-import com.senla.elhoteladmin.controller.AdminControllerSingleton;
+import com.senla.daoservice.controller.ActionController;
 import consoleuserinterface.utils.ScanUtil;
 
 public class SetRoomStatusAsOnRepair implements IAction{
-    private final AdminControllerSingleton adminControllerSingleton = AdminControllerSingleton.getInstance();
+    ActionController adminController = new ActionController();
 
     @Override
     public void execute() {
         System.out.println("Введите номер комнаты - ");
-        adminControllerSingleton.setRoomStatusAsOnRepair(ScanUtil.getInt());
+        adminController.getAdminController().setRoomStatusAsOnRepair(ScanUtil.getInt());
         System.out.println();
     }
 }

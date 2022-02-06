@@ -1,7 +1,7 @@
 package consoleuserinterface.actions;
 
-import com.senla.elhoteladmin.controller.AdminControllerSingleton;
-import com.senla.elhoteladmin.entity.*;
+import com.senla.daoservice.controller.ActionController;
+import com.senla.daoservice.entity.*;
 import consoleuserinterface.utils.ScanUtil;
 
 import java.time.LocalDate;
@@ -9,18 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreateBookingOrder implements IAction {
-    private final AdminControllerSingleton adminControllerSingleton =
-            AdminControllerSingleton.getInstance();
+    ActionController adminController = new ActionController();
 
     private List<AdditionalService> createListAddServInOrder() {
         List<AdditionalService> listOrder = new ArrayList<>();
         int number = -1;
         do {
-            System.out.println(adminControllerSingleton.getListAdditionalServices());
+            System.out.println(adminController.getAdminController().getListAdditionalServices());
             System.out.println("Введите ID дополнительного сервиса. Или введите 0 для выхода. -  ");
             number = ScanUtil.getInt();
-            if (number > 0 && number <= adminControllerSingleton.getListAdditionalServices().size()) {
-                listOrder.add(adminControllerSingleton.getAdditionalServiceByID(number));
+            if (number > 0 && number <= adminController.getAdminController().getListAdditionalServices().size()) {
+                listOrder.add(adminController.getAdminController().getAdditionalServiceByID(number));
             } else if (number == 0) {
                 System.out.println("Создание списка дополнительных сервисов завершено.\n");
             } else {
@@ -68,7 +67,7 @@ public class CreateBookingOrder implements IAction {
         LocalDate orderCheckOutDate = ScanUtil.getDate();
 
         System.out.println("Введите номер комнаты.");
-        Room orderedHotelRoom = adminControllerSingleton.getRoomByNumber(ScanUtil.getInt());
+        Room orderedHotelRoom = adminController.getAdminController().getRoomByNum(ScanUtil.getInt());
 
         System.out.println("Введите поочередно ID дополнительных сервисов.");
         List<AdditionalService> orderedAdditionalServices = createListAddServInOrder();
@@ -81,7 +80,7 @@ public class CreateBookingOrder implements IAction {
         BookingOrder order = new BookingOrder(orderID, orderCheckInDate, orderCheckOutDate, orderedHotelRoom,
                 orderedAdditionalServices, orderHotelGuests, orderStatus);
 
-        adminControllerSingleton.saveNewBookingOrder(order);
+        adminController.getAdminController().saveNewBookingOrder(order);
         System.out.println("Создан заказ " + orderID + ".");
         System.out.println(order);
         System.out.println("----------------------------------------------------------------------------");

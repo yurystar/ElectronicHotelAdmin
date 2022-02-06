@@ -1,15 +1,15 @@
 package consoleuserinterface.actions;
 
-import com.senla.elhoteladmin.service.RoomService;
+import com.senla.daoservice.controller.ActionController;
 import consoleuserinterface.utils.ScanUtil;
 
 public class SetNewPriceRoom implements IAction {
-    private final RoomService roomService = RoomService.getInstance();
+    ActionController adminController = new ActionController();
 
     @Override
     public void execute() {
         System.out.println("Введите номер комнаты и новую цену- ");
-        roomService.setNewPriceRoom(ScanUtil.getInt(), ScanUtil.getInt());
+        adminController.getAdminController().setNewPriceRoom(ScanUtil.getInt(), ScanUtil.getInt());
         System.out.println("Новая цена установлена.\n");
     }
 }

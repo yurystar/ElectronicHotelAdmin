@@ -1,18 +1,18 @@
 package consoleuserinterface.actions;
 
-import com.senla.elhoteladmin.entity.Room;
-import com.senla.elhoteladmin.service.RoomService;
+import com.senla.daoservice.controller.ActionController;
+import com.senla.daoservice.entity.Room;
 import consoleuserinterface.utils.ScanUtil;
 
 public class DeleteRoom implements IAction {
-    private final RoomService roomService = RoomService.getInstance();
+    ActionController adminController = new ActionController();
 
     @Override
     public void execute() {
         System.out.println("Введите номер комнаты для удаления - ");
-        Room room = roomService.getRoomByNum(ScanUtil.getInt());
+        Room room = adminController.getAdminController().getRoomByNum(ScanUtil.getInt());
         if (room != null) {
-            roomService.deleteRoom(room);
+            adminController.getAdminController().deleteRoom(room);
         }
         System.out.println("Комната \n" + room + "\nудалена.\n");
     }

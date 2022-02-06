@@ -1,11 +1,11 @@
 package consoleuserinterface.actions;
 
-import com.senla.elhoteladmin.entity.AdditionalService;
-import com.senla.elhoteladmin.service.AdditionalServiceService;
+import com.senla.daoservice.controller.ActionController;
+import com.senla.daoservice.entity.AdditionalService;
 import consoleuserinterface.utils.ScanUtil;
 
 public class CreateNewAdditionalService implements IAction {
-    private final AdditionalServiceService service = AdditionalServiceService.getInstance();
+    ActionController adminController = new ActionController();
 
     @Override
     public void execute() {
@@ -13,7 +13,7 @@ public class CreateNewAdditionalService implements IAction {
 
         System.out.println("Введите ID сервиса - ");
         Integer servID = ScanUtil.getInt();
-        if (service.getAdditionalServiceByID(servID) != null) {
+        if (adminController.getAdminController().getAdditionalServiceByID(servID) != null) {
             System.out.println("Комната с таким номером уже существует.\n");
             return;
         } else additionalService.setServiceID(servID);
@@ -24,7 +24,7 @@ public class CreateNewAdditionalService implements IAction {
         System.out.println("Введите цену сервиса - ");
         additionalService.setServicePrice(ScanUtil.getInt());
 
-        service.saveNewAdditionalService(additionalService);
+        adminController.getAdminController().saveNewAdditionalService(additionalService);
         System.out.println("Дополнительный сервис - \n" + additionalService + " \nсоздан.\n");
     }
 }

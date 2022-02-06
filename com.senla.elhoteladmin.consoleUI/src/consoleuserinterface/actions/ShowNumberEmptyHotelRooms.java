@@ -1,14 +1,14 @@
 package consoleuserinterface.actions;
 
-import com.senla.elhoteladmin.service.RoomService;
+import com.senla.daoservice.controller.ActionController;
 
 public class ShowNumberEmptyHotelRooms implements IAction {
-    private final RoomService roomService = RoomService.getInstance();
-
+    ActionController adminController = new ActionController();
 
     @Override
     public void execute() {
-        System.out.println("Количество свободных номеров - " + roomService.getNumberEmptyHotelRooms());
+        System.out.println("Количество свободных номеров - " +
+                adminController.getAdminController().getNumberEmptyHotelRooms());
         System.out.println();
     }
 }

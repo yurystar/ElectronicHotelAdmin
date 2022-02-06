@@ -1,15 +1,15 @@
 package consoleuserinterface.actions;
 
-import com.senla.elhoteladmin.controller.AdminControllerSingleton;
+import com.senla.daoservice.controller.ActionController;
 import consoleuserinterface.utils.ScanUtil;
 
 public class SetRoomStatusAsEmpty implements IAction {
-    private final AdminControllerSingleton adminControllerSingleton = AdminControllerSingleton.getInstance();
+    ActionController adminController = new ActionController();
 
     @Override
     public void execute() {
         System.out.println("Введите номер комнаты - ");
-        adminControllerSingleton.setRoomStatusAsEmpty(ScanUtil.getInt());
+        adminController.getAdminController().setRoomStatusAsEmpty(ScanUtil.getInt());
         System.out.println("Статус изменен. \n");
         System.out.println();
     }

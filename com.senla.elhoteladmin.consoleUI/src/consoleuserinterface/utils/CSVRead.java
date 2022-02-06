@@ -1,10 +1,7 @@
 package consoleuserinterface.utils;
 
-import com.senla.elhoteladmin.entity.*;
-import com.senla.elhoteladmin.service.AdditionalServiceService;
-import com.senla.elhoteladmin.service.BookingOrderService;
-import com.senla.elhoteladmin.service.GuestService;
-import com.senla.elhoteladmin.service.RoomService;
+import com.senla.daoservice.controller.ActionController;
+import com.senla.daoservice.entity.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,9 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CSVRead {
+    ActionController adminController = new ActionController();
 
-    public static void CSVReadRoom() {
-        RoomService roomDao = RoomService.getInstance();
+    public void CSVReadRoom() {
+
         try (BufferedReader reader = new BufferedReader(new FileReader("..\\Room.csv"))) {
 
             String[] lineArray;
@@ -39,11 +37,12 @@ public class CSVRead {
             System.out.println();
 
             for (Room roomFromImport : roomsFromFile) {
-                Room roomFromStorage = roomDao.getRoomByNum(roomFromImport.getRoomNumber());
+                Room roomFromStorage =
+                        adminController.getAdminController().getRoomByNum(roomFromImport.getRoomNumber());
                 if (roomFromStorage == null) {
-                    roomDao.saveNewRoom(roomFromImport);
+                    adminController.getAdminController().saveNewRoom(roomFromImport);
                 } else if (!roomFromImport.equals(roomFromStorage)) {
-                    roomDao.updateRoom(roomFromImport);
+                    adminController.getAdminController().updateRoom(roomFromImport);
                 }
             }
         } catch (Exception e) {
@@ -52,8 +51,8 @@ public class CSVRead {
         }
     }
 
-    public static void CSVReadGuest() {
-        GuestService guestDao = GuestService.getInstance();
+    public void CSVReadGuest() {
+
         try (BufferedReader reader = new BufferedReader(new FileReader("..\\Guest.csv"))) {
 
             String[] lineArray;
@@ -74,11 +73,12 @@ public class CSVRead {
             System.out.println();
 
             for (Guest guestFromImport : guestsFromFile) {
-                Guest guestFromStorage = guestDao.getGuestById(guestFromImport.getGuestID());
+                Guest guestFromStorage =
+                        adminController.getAdminController().getGuestById(guestFromImport.getGuestID());
                 if (guestFromStorage == null) {
-                    guestDao.saveGuestInStorage(guestFromImport);
+                    adminController.getAdminController().saveGuestInStorage(guestFromImport);
                 } else if (!guestFromImport.equals(guestFromStorage)) {
-                    guestDao.updateGuest(guestFromImport);
+                    adminController.getAdminController().updateGuest(guestFromImport);
                 }
             }
         } catch (Exception e) {
@@ -87,8 +87,8 @@ public class CSVRead {
         }
     }
 
-    public static void CSVReadAddServ() {
-        AdditionalServiceService serviceDao = AdditionalServiceService.getInstance();
+    public void CSVReadAddServ() {
+
         try (BufferedReader reader = new BufferedReader(new FileReader("..\\AdditionalService.csv"))) {
 
             String[] lineArray;
@@ -108,11 +108,13 @@ public class CSVRead {
             System.out.println();
 
             for (AdditionalService addServFromImport : addServsFromFile) {
-                AdditionalService addServFromStorage = serviceDao.getAdditionalServiceByID(addServFromImport.getServiceID());
+                AdditionalService addServFromStorage =
+                        adminController.getAdminController()
+                                .getAdditionalServiceByID(addServFromImport.getServiceID());
                 if (addServFromStorage == null) {
-                    serviceDao.saveNewAdditionalService(addServFromImport);
+                    adminController.getAdminController().saveNewAdditionalService(addServFromImport);
                 } else if (!addServFromImport.equals(addServFromStorage)) {
-                    serviceDao.updateAdditionalService(addServFromImport);
+                    adminController.getAdminController().updateAdditionalService(addServFromImport);
                 }
             }
         } catch (Exception e) {
@@ -121,9 +123,8 @@ public class CSVRead {
         }
     }
 
-    public static void CSVReadBookOrder() {
+    public void CSVReadBookOrder() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        BookingOrderService bookingOrderDao = BookingOrderService.getInstance();
 
         try (BufferedReader reader = new BufferedReader(new FileReader("..\\BookingOrder.csv"))) {
 
@@ -188,11 +189,11 @@ public class CSVRead {
 
             for (BookingOrder bookOrdFromImport : BookOrdersFromFile) {
                 BookingOrder bookOrdFromStorage =
-                        bookingOrderDao.getBookingOrderByID(bookOrdFromImport.getOrderID());
+                        adminController.getAdminController().getBookingOrderByID(bookOrdFromImport.getOrderID());
                 if (bookOrdFromStorage == null) {
-                    bookingOrderDao.saveNewBookingOrder(bookOrdFromImport);
+                    adminController.getAdminController().saveNewBookingOrder(bookOrdFromImport);
                 } else if (!bookOrdFromImport.equals(bookOrdFromStorage)) {
-                    bookingOrderDao.updateBookingOrder(bookOrdFromImport);
+                    adminController.getAdminController().updateBookingOrder(bookOrdFromImport);
                 }
             }
         } catch (Exception e) {

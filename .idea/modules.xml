@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ElectronicHotelAdmin.iml" filepath="$PROJECT_DIR$/ElectronicHotelAdmin.iml" />
       <module fileurl="file://$PROJECT_DIR$/com.senla.elhoteladmin.consoleUI/com.senla.elhoteladmin.consoleUI.iml" filepath="$PROJECT_DIR$/com.senla.elhoteladmin.consoleUI/com.senla.elhoteladmin.consoleUI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/daoservice/daoservice.iml" filepath="$PROJECT_DIR$/daoservice/daoservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/depinject/depinject.iml" filepath="$PROJECT_DIR$/depinject/depinject.iml" />
     </modules>
   </component>

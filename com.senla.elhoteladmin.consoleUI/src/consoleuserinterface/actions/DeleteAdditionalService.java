@@ -1,18 +1,19 @@
 package consoleuserinterface.actions;
 
-import com.senla.elhoteladmin.entity.AdditionalService;
-import com.senla.elhoteladmin.service.AdditionalServiceService;
+import com.senla.daoservice.controller.ActionController;
+import com.senla.daoservice.entity.AdditionalService;
 import consoleuserinterface.utils.ScanUtil;
 
 public class DeleteAdditionalService implements IAction{
-    private final AdditionalServiceService service = AdditionalServiceService.getInstance();
+    ActionController adminController = new ActionController();
 
     @Override
     public void execute() {
         System.out.println("Введите номер дополнительного сервиса для удаления - ");
-        AdditionalService additionalService = service.getAdditionalServiceByID(ScanUtil.getInt());
+        AdditionalService additionalService =
+                adminController.getAdminController().getAdditionalServiceByID(ScanUtil.getInt());
         if (additionalService != null) {
-            service.deleteAdditionalService(additionalService);
+            adminController.getAdminController().deleteAdditionalService(additionalService);
         }
         System.out.println("Дополнительный сервис \n" + additionalService + "\nудален.\n");
     }

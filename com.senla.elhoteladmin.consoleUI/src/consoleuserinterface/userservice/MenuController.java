@@ -1,8 +1,7 @@
 package consoleuserinterface.userservice;
 
-import com.senla.elhoteladmin.serialization.WrapperSerialize;
+import com.senla.daoservice.serialization.WrapperSerialize;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class MenuController {
@@ -15,6 +14,7 @@ public class MenuController {
     }
 
     public void run() {
+        WrapperSerialize wrapperSerialize = WrapperSerialize.getInstance();
         navigator.setCurrentMenu(builder.getRootMenu());
         navigator.printMenu();
         Integer index;
@@ -24,7 +24,7 @@ public class MenuController {
                 index = scanner.nextInt();
                 if (index == -1) {
 
-                    WrapperSerialize.serialize();
+                    wrapperSerialize.serialize();
                     System.out.println("Вы вышли из программы.");
                     return;
                 }
